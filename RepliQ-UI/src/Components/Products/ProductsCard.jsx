@@ -22,7 +22,6 @@ const ProductsCard = (prod) => {
             Swal.fire({position: "top-end", icon: "error", title: "Item already in the cart", showConfirmButton: false, timer: 1500});
         })
     }
-    
     const handleDelete = (id) =>{
         Swal.fire({
             title: "Are you sure?",
