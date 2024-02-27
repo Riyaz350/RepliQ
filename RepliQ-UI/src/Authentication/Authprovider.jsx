@@ -1,11 +1,52 @@
-import React from 'react';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"
+import auth from "../../firebase.config"
+import { createContext, useEffect, useState } from "react"
+import useAxiosPublic from "../Hooks/useAxiosPublic"
 
-const Authprovider = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-};
+export const AuthContext = createContext(null)
+const AuthProvider = ({children}) => {
+    const axiosPublic = useAxiosPublic()
+    const [loading, setLoading] =useState(true)
+    const [user, setUser] =useState(null)
+    const [month, setMonth] =useState('january')
 
-export default Authprovider;
+    const createUser = ( email, password) =>{
+        setLoading(true)
+        
+        return createUserWithEmailAndPassword(auth, email, password)
+    }
+
+    const signInUser = (email, password) =>{
+        setLoading(true)
+        return signInWithEmailAndPassword(auth, email, password)
+    }
+
+    const signInPop = (provider) =>{
+        setLoading(true)
+        return signInWithPopup(auth, provider)
+    }
+
+    const logOut = () =>{
+        return signOut(auth)
+    }
+
+    useEffect(()=>{
+        const unSubscribe = onAuthStateChanged(auth, currentUser =>{  
+            setUser(currentUser)
+            setLoading(false)
+        })
+        return()=>{
+          unSubscribe()  
+        }
+    },[user?.email, user?.displayName, axiosPublic])
+
+    const authInfo = { user,loading,month, setMonth, createUser, signInUser,signInPop, logOut }
+
+return(
+<AuthContext.Provider value={authInfo}>
+    {children}
+</AuthContext.Provider>
+)
+}
+
+export default AuthProvider;
