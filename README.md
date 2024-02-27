@@ -28,4 +28,4 @@ Explore the live demo of goBilling: [goBilling Live](https://repliq-f3b92.web.ap
 ## Technologies Used
 - [React](https://reactjs.org/)
 - [Firebase](https://firebase.google.com/) (Authentication, Realtime Database)
-- [Tailwind]([https://getbootstrap.com](https://tailwindcss.com/)https://tailwindcss.com/)
+- [Tailwind](https://getbootstrap.com](https://tailwindcss.com/)https://tailwindcss.com/)
