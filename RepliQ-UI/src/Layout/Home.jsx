@@ -8,11 +8,12 @@ import Navbar2 from "../Components/Products/Navbar2";
 import Products from "../Components/Products/Products";
 
 const Home = () => {
-    const {user} = useContext(AuthContext)
+    const {user, loading} = useContext(AuthContext)
 
     return (
         <div className="lg:grid grid-cols-2 ">
-        <div>
+            {!loading?
+            <div>
             <div className="flex items-center">
             <Sidebar/>
             <Navbar1/>
@@ -21,7 +22,10 @@ const Home = () => {
                 <Cart/>:
                 <LogIn/>
             }
-        </div>
+            </div>:
+            <span className="w-1/6 mx-auto loading loading-dots "></span>
+            }
+
         <div>
            <Navbar2/>
            <Products/>

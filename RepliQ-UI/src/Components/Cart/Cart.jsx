@@ -50,8 +50,8 @@ const Cart = () => {
       useEffect(() => {
         if (cartProducts && cartProducts.length > 0) {
           const newTotalPrice = cartProducts.reduce((acc, prod) => {
-            const productPrice = prod.price 
-            const productQuantity = quantities[prod._id] || 1;
+            const productPrice = prod?.price 
+            const productQuantity = quantities[prod?._id] || 1;
             return acc + productPrice * productQuantity;
           }, 0);
     

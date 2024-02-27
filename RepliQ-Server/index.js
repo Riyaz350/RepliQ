@@ -9,6 +9,7 @@ app.use(cors({
 
     origin:[ 'http://localhost:5173',
             'http://localhost:5174',
+            'https://repliq-f3b92.web.app'
            ],
     credentials:true
 
