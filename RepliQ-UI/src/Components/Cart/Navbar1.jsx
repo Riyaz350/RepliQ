@@ -11,18 +11,18 @@ const Navbar1 = () => {
     const handleAddTask=(e)=>{
         e.preventDefault()
         const form = e.target
-        const name = form.name.value
-        const category = form.category.value
-        const price = form.price.value
-        const quantity = form.quantity.value
-        const image = form.image.value
-        console.log(name, category, price, quantity, image)
+        const Name = form.name.value
+        const Category = form.category.value
+        const Price = form.price.value
+        const Quantity = form.quantity.value
+        const Image = form.image.value
+        const prod = {name:Name, category:Category, quantity:Quantity, price:Price, image:Image}
 
-
-        // .then(()=> {
-        //     Swal.fire({position: "top-end", icon: "success", title: "Task Added", showConfirmButton: false, timer: 1500});
-        // })
-        // .catch(err=> console.log(err))
+        axiosPublic.post('/products', prod )
+        .then(()=> {
+            Swal.fire({position: "top-end", icon: "success", title: "Task Added", showConfirmButton: false, timer: 1500});
+        })
+        .catch(err=> console.log(err))
     }
     return (
         <div className={` ${window.innerWidth >=1024 && window.innerWidth <=1500 ? 'grid grid-cols-2' : 'grid grid-cols-2 md:flex justify-between  items-center md:gap-10'}   gap-2  my-2 lg:my-3  text-base md:text-xl lg:text-2xl`}>

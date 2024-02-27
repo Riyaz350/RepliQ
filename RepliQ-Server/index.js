@@ -44,6 +44,13 @@ async function run() {
             res.send(result)
           })
 
+          app.post(`/products`, async(req, res)=>{
+            const product = req.body
+            console.log(product)
+            const result = await products.insertOne(product)
+            res.send(result)
+          })
+
           app.post(`/users`, async(req, res)=>{
             const user = req.body
             const query = {mail : req?.body.mail} 
