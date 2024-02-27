@@ -57,7 +57,7 @@ const Navbar1 = () => {
                                     <div>
                                         <input type="text" name="image" placeholder="Image direct Link"  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"  required />
                                     </div>
-                            <button type="submit" className="btnTask btn">Add Task</button>
+                            <button type="submit" className="btnTask btn">Add Product</button>
                             </form>
                             <form method="dialog" className="w-full">
                             <button className="btn">Close</button>
