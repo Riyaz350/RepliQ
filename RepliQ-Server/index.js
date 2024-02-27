@@ -38,8 +38,6 @@ async function run() {
             res.send(result)
           })
 
-        
-
           app.post(`/users`, async(req, res)=>{
             const user = req.body
             const query = {mail : req?.body.mail} 
@@ -48,6 +46,12 @@ async function run() {
               return res.send  ({message: 'user already exists', insertedId : null})
             }
             const result = await users.insertOne(user)
+            res.send(result)
+          })
+
+
+          app.get('/products', async(req, res)=>{
+            const result = await products.find().toArray()
             res.send(result)
           })
 
