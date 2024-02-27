@@ -1,11 +1,9 @@
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"
 import auth from "../../firebase.config"
 import { createContext, useEffect, useState } from "react"
-import useAxiosPublic from "../Hooks/useAxiosPublic"
 
 export const AuthContext = createContext(null)
 const AuthProvider = ({children}) => {
-    const axiosPublic = useAxiosPublic()
     const [loading, setLoading] =useState(true)
     const [user, setUser] =useState(null)
     const [month, setMonth] =useState('january')
@@ -38,7 +36,7 @@ const AuthProvider = ({children}) => {
         return()=>{
           unSubscribe()  
         }
-    },[user?.email, user?.displayName, axiosPublic])
+    },[user?.email, user?.displayName])
 
     const authInfo = { user,loading,month, setMonth, createUser, signInUser,signInPop, logOut }
 
