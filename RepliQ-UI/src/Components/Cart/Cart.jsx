@@ -139,7 +139,7 @@ const Cart = () => {
             </div>
 
             
-            <div className="grid grid-cols-2">
+            <div className="md:grid grid-cols-2">
                 <div>
                     
                 </div>
@@ -170,11 +170,11 @@ const Cart = () => {
                             }
                             
                     </div>
-                    <div className="m-6  flex justify-between gap-5 col-span-2">
-                        <button className=" bg-red-300 p-4 rounded-lg text-3xl flex items-center gap-2"><MdCancel />Cancel</button>
-                        <button className=" bg-[#e7e9f6] text-[#5c6ac4] p-4 rounded-lg text-3xl flex items-center gap-2"><MdCancel />Hold</button>
-                        <button className=" bg-[#e7e9f6] text-[#5c6ac4] p-4 rounded-lg text-3xl flex items-center gap-2"><MdCancel />Discount</button>
-                        <button onClick={handlePay} className=" bg-[#e7e9f6] text-[#5c6ac4] p-4 rounded-lg text-3xl flex items-center gap-2"><MdCancel />Pay <span>now</span></button>
+                    <div className="m-6 grid grid-cols-2 lg:flex justify-between gap-5 col-span-2">
+                        <button className=" bg-red-300 p-4 rounded-lg text-base md:text-xl lg:text-3xl flex items-center gap-2"><MdCancel />Cancel</button>
+                        <button className=" bg-[#e7e9f6] text-[#5c6ac4] p-4 rounded-lg text-base md:text-xl lg:text-3xl flex items-center gap-2"><MdCancel />Hold</button>
+                        <button className=" bg-[#e7e9f6] text-[#5c6ac4] p-4 rounded-lg text-base md:text-xl lg:text-3xl flex items-center gap-2"><MdCancel />Discount</button>
+                        <button onClick={handlePay} className=" bg-[#e7e9f6] text-[#5c6ac4] p-4 rounded-lg text-base md:text-xl lg:text-3xl flex items-center gap-2"><MdCancel />Pay <span>now</span></button>
                     </div>
             </div>
 

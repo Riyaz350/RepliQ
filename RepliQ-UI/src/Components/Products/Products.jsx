@@ -81,6 +81,8 @@ const Products = () => {
                     <div className="drawer-side">
                         <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
                         <div className="menu p-4 w-60 md:w-96 min-h-full bg-base-200 ">
+                        <button onClick={()=>handleFilter(0)} className={catBTN}>All Categories</button>
+
                         <div className='lg:flex flex-wrap gap-2   '>
                         {cats}
                         </div>

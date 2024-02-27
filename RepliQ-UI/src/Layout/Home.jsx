@@ -11,7 +11,7 @@ const Home = () => {
     const {user, loading} = useContext(AuthContext)
 
     return (
-        <div className="lg:grid grid-cols-2 ">
+        <div className={`${window.innerWidth <= 1024 ? 'flex flex-col-reverse' :'lg:grid grid-cols-2 '}`}>
             {!loading?
             <div>
             <div className="flex items-center">
