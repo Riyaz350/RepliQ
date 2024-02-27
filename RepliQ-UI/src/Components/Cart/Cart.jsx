@@ -117,14 +117,14 @@ const Cart = () => {
                         <li key={prod?._id} className="flex items-center  px-10 text-base md:text-xl lg:text-2xl gap-2">
                             <p><FaRegEdit /></p>
                             <div className="text-start p-2 justify-start grid grid-cols-5 gap-5 flex-grow border-[1px] border-black">
-                                <h1 className="col-span-2">{prod.name}</h1>
-                                <h1>{prod.price}</h1>
+                                <h1 className="col-span-2">{prod?.name}</h1>
+                                <h1>{prod?.price}</h1>
                                 <div className="flex items-center gap-2">
-                                    <button onClick={()=>handleReduce(prod._id)}><CiCircleMinus /></button>
-                                    {quantities[prod._id] || 1}
-                                    <button onClick={()=>handleIncrease(prod._id)}><CiCirclePlus /></button>
+                                    <button onClick={()=>handleReduce(prod?._id)}><CiCircleMinus /></button>
+                                    {quantities[prod?._id] || 1}
+                                    <button onClick={()=>handleIncrease(prod?._id)}><CiCirclePlus /></button>
                                 </div>
-                                <h1>{quantities[prod._id] ? (quantities[prod._id] * prod.price).toFixed(2) : prod.price}</h1>
+                                <h1>{quantities[prod?._id] ? (quantities[prod?._id] * prod?.price).toFixed(2) : prod?.price}</h1>
                             </div>
                             <button onClick={()=>removeFromCart(prod._id)} className="text-red-500"><CiTrash /></button>
                         </li>
