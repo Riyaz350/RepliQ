@@ -46,8 +46,14 @@ async function run() {
 
           app.post(`/products`, async(req, res)=>{
             const product = req.body
-            console.log(product)
             const result = await products.insertOne(product)
+            res.send(result)
+          })
+
+          app.delete('/products/:_id',  async(req, res)=>{
+            const id = req.params._id
+            const query = {_id: new ObjectId(id)}
+            const result = await products.deleteOne(query);
             res.send(result)
           })
 
@@ -145,6 +151,6 @@ async function run() {
     
     
     app.listen(port, ()=>{
-        console.log(`Landlord is sitting on port ${port} `)
+        console.log(`Bezos is sitting on port ${port} `)
     })
       

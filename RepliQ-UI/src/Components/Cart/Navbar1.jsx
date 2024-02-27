@@ -4,9 +4,11 @@ import { GrStakeholder } from "react-icons/gr";
 import { FaPlusCircle } from "react-icons/fa";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import useProducts from "../../Hooks/useProducts";
 
 const Navbar1 = () => {
     const axiosPublic = useAxiosPublic()
+    const [,, refetch] = useProducts()
     const nav1 ='flex items-center  gap-2  bg-[#e7e9f6] text-[#5c6ac4] font-medium p-2 lg:px-6 lg:p-3 rounded-lg  '
     const handleAddTask=(e)=>{
         e.preventDefault()
@@ -21,6 +23,7 @@ const Navbar1 = () => {
         axiosPublic.post('/products', prod )
         .then(()=> {
             Swal.fire({position: "top-end", icon: "success", title: "Task Added", showConfirmButton: false, timer: 1500});
+            refetch()
         })
         .catch(err=> console.log(err))
     }

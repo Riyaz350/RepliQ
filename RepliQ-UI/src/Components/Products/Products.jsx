@@ -8,16 +8,10 @@ import useUsers from '../../Hooks/useUserData';
 import ProductsCard from './ProductsCard';
 
 const Products = () => {
-    const [products, productsLoading] = useProducts()
+    const [products, productsLoading, refetch] = useProducts()
     
     const filteredCategory = [...new Set(products.map(prod=> prod.category))]
     const catBTN = 'btn text-base md:text-xl lg:text-2xl my-4 bg-white text-gray-500 border-2 border-gray-500 hover:text-blue-500 hover:bg-white hover:border-blue-500'
-
-    
-
-
-    
-    
 
     const cats = <>
     
