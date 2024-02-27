@@ -5,30 +5,18 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { AuthContext } from '../../Authentication/Authprovider';
 import Swal from 'sweetalert2';
 import useUsers from '../../Hooks/useUserData';
+import ProductsCard from './ProductsCard';
 
 const Products = () => {
     const [products, productsLoading] = useProducts()
-    const [,,fetchUser] = useUsers()
-    const {user} = useContext(AuthContext)
-    const axiosPublic = useAxiosPublic()
+    
     const filteredCategory = [...new Set(products.map(prod=> prod.category))]
     const catBTN = 'btn text-base md:text-xl lg:text-2xl my-4 bg-white text-gray-500 border-2 border-gray-500 hover:text-blue-500 hover:bg-white hover:border-blue-500'
 
     
 
 
-    const handleCart = (id)=>{
-        axiosPublic.patch(`/users/${user?.email}`, {userID:id})
-        .then(res=> {
-            if(res?.status == 200){
-                Swal.fire({position: "top-end", icon: "success", title: "Added Item Successfully", showConfirmButton: false, timer: 1500});
-                fetchUser()
-            }
-        })
-        .catch(()=>{
-            Swal.fire({position: "top-end", icon: "error", title: "Item already in the cart", showConfirmButton: false, timer: 1500});
-        })
-    }
+    
     
 
     const cats = <>
@@ -94,27 +82,7 @@ const Products = () => {
             {
             filteredProducts &&
             filteredProducts.map(prod =>
-                <div key={prod._id} className='h-[230px]'>
-
-                <div  onClick={()=>document.getElementById(prod._id).showModal()} className='border-[.3px] h-[230px] cursor-pointer border-[#abb0b4] rounded-sm bg-white flex flex-col justify-between '>
-                    <img className='w-[250px] h-[150px] bg-white' src={prod.image} alt="" />
-                    <p className='bg-[#f4f6f8] text-xl font-bold'>${prod.price}</p>
-                    <h1 className='p-1 text-base font-semibold'>{prod.name}</h1>
-                </div>
-                <dialog id={prod._id} className="modal modal-bottom sm:modal-middle">
-                <div className="modal-box">
-                    <img className='w-4/5 mx-auto my-2 ' src={prod.image} alt="" />
-                    <h3 className="font-medium text-2xl">{prod.name}</h3>
-                    <p className="py-4 text-3xl font-light"> ${prod.price}</p>
-                    <button onClick={()=>handleCart(prod._id)} className='text-2xl bg-[#e7e9f6] p-2 rounded-lg border-2 border-[#5c6ac4] text-[#5c6ac4] hover:bg-[#5c6ac4] hover:text-white'>Add To Card</button>
-                    <div className="modal-action">
-                    <form method="dialog">
-                        <button className="btn">Close</button>
-                    </form>
-                    </div>
-                </div>
-                </dialog>
-                </div>
+                <ProductsCard key={prod?._id} prod={prod}></ProductsCard>
                 
                 )}
             </div>
