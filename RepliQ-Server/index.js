@@ -38,6 +38,11 @@ async function run() {
             res.send(result)
           })
 
+        app.get('/products', async(req, res)=>{
+            const result = await products.find().toArray()
+            res.send(result)
+          })
+
           app.post(`/users`, async(req, res)=>{
             const user = req.body
             const query = {mail : req?.body.mail} 
@@ -49,13 +54,73 @@ async function run() {
             res.send(result)
           })
 
+          app.patch('/users/:email', async (req, res) => {
 
-          app.get('/products', async(req, res)=>{
-            const result = await products.find().toArray()
-            res.send(result)
+            const userEmail = req.params.email;
+            const filter = { mail: userEmail };
+            const user = await users.findOne(filter);
+
+            if (user) {
+              const isUserInCart = user.cart.some(item => item === req.body.userID);
+          
+              if (isUserInCart) {
+                res.status(400).json({ message: 'Item is already in the cart.' });
+              } else {
+                const updateDoc = {
+                  $push: {
+                    cart: req.body.userID,
+                  }
+                  
+              };
+              const result = await users.updateOne(filter, updateDoc);
+              res.send(result);
+  
+              }
+            } else {
+              res.status(404).json({ message: 'User not found.' });
+            }
+
           })
 
+
+          app.patch('/userss/:email', async (req, res) => {
+            const userEmail = req.params.email;
+            const filter = { mail: userEmail };
+            const user = await users.findOne(filter);
           
+            if (user) {
+              const isUserInCart = user.cart.some(item => item === req.body.userID);
+          
+              if (isUserInCart) {
+                // Remove the userID from the cart array
+                const updateDoc = {
+                  $pull: {
+                    cart: req.body.userID,
+                  }
+                };
+          
+                const result = await users.updateOne(filter, updateDoc);
+                res.send(result);
+              } else {
+                res.status(400).json({ message: 'User is not in the cart.' });
+              }
+            } else {
+              res.status(404).json({ message: 'User not found.' });
+            }
+          });
+          
+          app.patch('/usersss/:email', async (req, res) => {
+            const userEmail = req.params.email;
+            const filter = { mail: userEmail };
+            const updateDoc = {
+              $set: {
+                cart: [],
+              }
+            };
+          
+            const result = await users.updateOne(filter, updateDoc);
+            res.send(result);
+          });
           
 
         await client.db("admin").command({ ping: 1 });
